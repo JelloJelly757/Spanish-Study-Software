@@ -1,5 +1,5 @@
 let questionList = ['the apple', 'the man', 'the women', 'the friend (masculine)', 'the game', 'the aiport', 'the beach', "the cat", 'the dog', 'the house']; 
-let answerList = ['la manzana', 'el hombre', 'la mujer', 'el amigo', 'el partido', 'el aerpuerto', 'la playa', 'el gato', 'el perro', 'la casa']; 
+let answerList = ['la manzana', 'el hombre', 'la mujer', 'el amigo', 'el partido', 'el aeropuerto', 'la playa', 'el gato', 'el perro', 'la casa']; 
 let score = 0; 
 let questionIndex = 0; 
 
@@ -26,10 +26,12 @@ let submitFunction = () =>{
 
         //PUT ENDGAME FUNCTION HERE
         endGame();
+        (score > 5, true);
+        (score < 6, true); 
     });
 }
 
-let endGame = () =>{
+let endGame = (playerWon) =>{
     if(questionIndex > 9){
         let summaryHTML = "<h1>Game Summary:</h1><ul>";
         for (let i = 0; i < questionList.length; i++) {
@@ -38,9 +40,15 @@ let endGame = () =>{
         summaryHTML += "</ul>";
 
         summaryContainer.innerHTML = summaryHTML;
+ 
+        if (playerWon) {
+            score > 5;
+            question.textContent = "You did well! Please play again!";
+        }else{
+            question.textContent = "Maybe review your vocab and try again";
+        }
 
-        scoreContainer.textContent = "Final Score: " + score; 
-        question.textContent = "Congratulations, play again!"; 
+        scoreContainer.textContent = "Final Score: " + score;  
         input.style.display = "none"; 
         button1.style.display = "none"; 
         button2.style.display = "none";
