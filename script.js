@@ -12,6 +12,7 @@ let summaryContainer = document.querySelector('.summarycon')
 
 question.textContent = questionList[questionIndex];
 
+// function that allows submit button to work 
 let submitFunction = () =>{
     button1.addEventListener('click', () =>{
         if(input.value === answerList[questionIndex]){
@@ -24,13 +25,12 @@ let submitFunction = () =>{
             scoreContainer.textContent = "Score: " + score;
         }
 
-        //PUT ENDGAME FUNCTION HERE
-        endGame();
-        (score > 5, true);
-        (score < 6, true); 
+        let playerWon = score > 5;
+        endGame(playerWon);  
     });
 }
 
+// function that allows for final screen to show after the studying is completed 
 let endGame = (playerWon) =>{
     if(questionIndex > 9){
         let summaryHTML = "<h1>Game Summary:</h1><ul>";
@@ -42,7 +42,6 @@ let endGame = (playerWon) =>{
         summaryContainer.innerHTML = summaryHTML;
  
         if (playerWon) {
-            score > 5;
             question.textContent = "You did well! Please play again!";
         }else{
             question.textContent = "Maybe review your vocab and try again";
@@ -57,6 +56,7 @@ let endGame = (playerWon) =>{
 
 submitFunction(); 
 
+// function that allows skip button to work 
 let skipFunction = () =>{
     button2.addEventListener('click', () =>{
         questionIndex += 1;  
@@ -67,4 +67,3 @@ let skipFunction = () =>{
 skipFunction();
 
 //need to add comments
-//need to add parameter to my endgame function
