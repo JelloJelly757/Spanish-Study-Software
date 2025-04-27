@@ -12,27 +12,28 @@ let summaryContainer = document.querySelector('.summarycon')
 
 question.textContent = questionList[questionIndex];
 
-// function that allows submit button to work 
 let submitFunction = () =>{
     button1.addEventListener('click', () =>{
+        //Check if the user's input matches the correct answer
         if(input.value === answerList[questionIndex]){
-            questionIndex += 1; 
-            score += 1; 
-            question.textContent = questionList[questionIndex]; 
+            questionIndex += 1; // Move to the next question
+            score += 1; // Increase the score
+            question.textContent = questionList[questionIndex]; // Update the displayed question
             scoreContainer.textContent = "Score: " + score; 
         }else{
-            score -= 1;  
-            scoreContainer.textContent = "Score: " + score;
+            score -= 1; // Decrease the score for incorrect answers
+            scoreContainer.textContent = "Score: " + score; // Update the score display
         }
 
+        // Check if the game should end and pass whether the player won
         let playerWon = score > 5;
         endGame(playerWon);  
     });
 }
 
-// function that allows for final screen to show after the studying is completed 
 let endGame = (playerWon) =>{
     if(questionIndex > 9){
+        // Generate a summary of all questions and answers
         let summaryHTML = "<h1>Game Summary:</h1><ul>";
         for (let i = 0; i < questionList.length; i++) {
             summaryHTML += `<li>Word In English: ${questionList[i]}<br>Translation: ${answerList[i]}</li>`;
@@ -41,12 +42,14 @@ let endGame = (playerWon) =>{
 
         summaryContainer.innerHTML = summaryHTML;
  
+        // Display a message based on whether the player won or lost
         if (playerWon) {
             question.textContent = "You did well! Please play again!";
         }else{
             question.textContent = "Maybe review your vocab and try again";
         }
 
+        // Display the final score and hide input and buttons
         scoreContainer.textContent = "Final Score: " + score;  
         input.style.display = "none"; 
         button1.style.display = "none"; 
@@ -56,7 +59,7 @@ let endGame = (playerWon) =>{
 
 submitFunction(); 
 
-// function that allows skip button to work 
+// Function to handle the skip button click event
 let skipFunction = () =>{
     button2.addEventListener('click', () =>{
         questionIndex += 1;  
@@ -66,4 +69,3 @@ let skipFunction = () =>{
 
 skipFunction();
 
-//need to add comments
