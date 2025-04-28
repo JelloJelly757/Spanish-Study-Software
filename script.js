@@ -15,7 +15,7 @@ question.textContent = questionList[questionIndex];
 let submitFunction = () =>{
     button1.addEventListener('click', () =>{
         //Check if the user's input matches the correct answer
-        if(input.value === answerList[questionIndex]){
+        if(input.value.trim().toLowerCase() === answerList[questionIndex].toLowerCase()){
             questionIndex += 1; // Move to the next question
             score += 1; // Increase the score
             question.textContent = questionList[questionIndex]; // Update the displayed question
@@ -32,7 +32,7 @@ let submitFunction = () =>{
 }
 
 let endGame = (playerWon) =>{
-    if(questionIndex > 9){
+    if(questionIndex === questionList.length){
         // Generate a summary of all questions and answers
         let summaryHTML = "<h1>Game Summary:</h1><ul>";
         for (let i = 0; i < questionList.length; i++) {
@@ -62,10 +62,12 @@ submitFunction();
 // Function to handle the skip button click event
 let skipFunction = () =>{
     button2.addEventListener('click', () =>{
-        questionIndex += 1;  
+        if(questionIndex < questionList.length - 1){
+        questionIndex ++;  
             question.textContent = questionList[questionIndex];
-        });
-    }
+        }
+    });
+}
 
 skipFunction();
 
