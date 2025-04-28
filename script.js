@@ -1,3 +1,4 @@
+// This is a simple game where the user has to guess the Spanish translation of English words
 let questionList = ['the apple', 'the man', 'the women', 'the friend (masculine)', 'the game', 'the aiport', 'the beach', "the cat", 'the dog', 'the house']; 
 let answerList = ['la manzana', 'el hombre', 'la mujer', 'el amigo', 'el partido', 'el aeropuerto', 'la playa', 'el gato', 'el perro', 'la casa']; 
 let score = 0; 
@@ -63,8 +64,10 @@ submitFunction();
 let skipFunction = () =>{
     button2.addEventListener('click', () =>{
         if(questionIndex < questionList.length - 1){
-        questionIndex ++;  
+            questionIndex ++;  
             question.textContent = questionList[questionIndex];
+        }else{
+            endGame(score > 5);
         }
     });
 }
